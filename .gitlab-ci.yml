@@ -1,9 +1,0 @@
-include:
-  - project: 'devops/ci-templates'
-    ref: 'main'
-    file: 'templates/external-repo.gitlab-ci.yml'
-
-sync-branch-to-github:
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $GITHUB_ORG
-      when: manual
