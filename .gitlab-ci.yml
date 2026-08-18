@@ -14,6 +14,7 @@ helm-index:
   image: ${DOCKER_REGISTRY}/docker.io/library/alpine:3.22
   tags:
     - aws-extra-small-general-runner
+  resource_group: helm-index
   variables:
     GIT_DEPTH: 0
     CHART_BASE_URL: "https://raw.githubusercontent.com/${GITHUB_ORG}/${GITHUB_REPO}/${CI_DEFAULT_BRANCH}"
@@ -21,7 +22,6 @@ helm-index:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       changes:
         - '*/*.tgz'
-        - '*/Chart.yaml'
         - 'scripts/update-helm-index.sh'
     - if: $CI_PIPELINE_SOURCE == "web"
   before_script:
