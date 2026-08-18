@@ -7,3 +7,24 @@ sync-branch-to-github:
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $GITHUB_ORG
       when: manual
+
+
+helm-index:
+  stage: .pre
+  image: ${DOCKER_REGISTRY}/docker.io/library/alpine:3.22
+  tags:
+    - aws-extra-small-general-runner
+  variables:
+    GIT_DEPTH: 0
+    CHART_BASE_URL: "https://raw.githubusercontent.com/${GITHUB_ORG}/${GITHUB_REPO}/${CI_DEFAULT_BRANCH}"
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      changes:
+        - '*/*.tgz'
+        - '*/Chart.yaml'
+        - 'scripts/update-helm-index.sh'
+    - if: $CI_PIPELINE_SOURCE == "web"
+  before_script:
+    - apk add --no-cache git helm
+  script:
+    - ./scripts/update-helm-index.sh
