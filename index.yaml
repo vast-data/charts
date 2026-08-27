@@ -1,0 +1,45 @@
+apiVersion: v1
+entries:
+  vast-dataengine:
+  - apiVersion: v2
+    appVersion: v5.5.0
+    created: "2026-08-27T03:34:58.233903465Z"
+    dependencies:
+    - alias: controller-manager
+      condition: controller-manager.enabled
+      name: vast-dataengine-controller-manager
+      repository: file://../vast-dataengine-controller-manager
+      version: 0.1.0
+    - alias: collector
+      condition: collector.enabled
+      name: vast-dataengine-collector
+      repository: file://../vast-dataengine-collector
+      version: 0.1.0
+    - alias: knative
+      condition: knative.enabled
+      name: vast-knative
+      repository: file://../vast-knative
+      version: 0.1.0
+    description: VAST DataEngine control-plane umbrella chart — controller-manager,
+      collector, and Knative
+    digest: 6f603c32fa59cd88a07be20eb1efae5e0baf1c622c5089bd088778e1e04ac307
+    home: https://github.com/vast-data/charts
+    keywords:
+    - vast
+    - controller-manager
+    - collector
+    - knative
+    - pipeline
+    - kafka
+    - tenant
+    - dataengine
+    - telemetry
+    maintainers:
+    - email: compute-engine-team@vastdata.com
+      name: VAST Data Compute Team
+    name: vast-dataengine
+    type: application
+    urls:
+    - https://raw.githubusercontent.com/vast-data/charts/main/vast-dataengine/vast-dataengine-5.5.0.tgz
+    version: 5.5.0
+generated: "2026-08-27T03:34:58.228736986Z"
